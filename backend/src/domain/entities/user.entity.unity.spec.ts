@@ -4,11 +4,14 @@ import { User } from './user.entity';
 describe('Domain > Entities > User', () => {
   describe('create', () => {
     it('should create a user when passing valid email and password', () => {
+      // Arrange
       const anEmail = 'john@doe.com';
       const aPassword = '12345678';
 
+      // Act
       const anUser = User.create({ email: anEmail, password: aPassword });
 
+      // Assert
       expect(anUser).toBeInstanceOf(User);
       expect(anUser.getEmail()).toBe(anEmail);
       expect(anUser.getPassword()).not.toBe(aPassword);
@@ -39,6 +42,34 @@ describe('Domain > Entities > User', () => {
       };
 
       expect(anError).toThrow(ValidatorDomainException);
+    });
+  });
+
+  describe('comparePassword', () => {
+    it('should return true when the informed password matches with user password', () => {
+      const anEmail = 'john@doe.com';
+      const aPassword = '12345678';
+
+      const anUser = User.create({ email: anEmail, password: aPassword });
+
+      expect(anUser.getPassword()).not.toBe(aPassword);
+
+      const isPasswordCorrect = anUser.comparePassword(aPassword);
+
+      expect(isPasswordCorrect).toBe(true);
+    });
+
+    it('should return false when the informed password does not match with user password', () => {
+      const anEmail = 'john@doe.com';
+      const aPassword = '12345678';
+
+      const anUser = User.create({ email: anEmail, password: aPassword });
+
+      expect(anUser.getPassword()).not.toBe(aPassword);
+
+      const isPasswordCorrect = anUser.comparePassword('wrong-password');
+
+      expect(isPasswordCorrect).toBe(false);
     });
   });
 });
