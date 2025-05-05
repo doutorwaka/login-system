@@ -1,5 +1,6 @@
 import { Utils } from 'src/shared/utils/utils';
-import { Entity } from '../shared/entity';
+import { Entity } from '../shared/entities/entity';
+import { UserValidatorFactory } from '../factories/user-validator.factory';
 
 export type UserCreateDto = {
   email: string;
@@ -26,7 +27,9 @@ export class User extends Entity {
     return new User(id, email, hashedPassword, createdAt, updatedAt);
   }
 
-  protected validate(): void {}
+  protected validate(): void {
+    UserValidatorFactory.create().validate(this);
+  }
 
   public getEmail(): string {
     return this.email;
