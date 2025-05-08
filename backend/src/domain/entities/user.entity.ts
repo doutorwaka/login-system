@@ -8,6 +8,14 @@ export type UserCreateDto = {
   password: string;
 };
 
+export type UserWithDto = {
+  id: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export class User extends Entity {
   private constructor(
     id: string,
@@ -29,6 +37,16 @@ export class User extends Entity {
     const createdAt = new Date();
     const updatedAt = new Date();
     return new User(id, email, hashedPassword, createdAt, updatedAt);
+  }
+
+  public static with({
+    id,
+    email,
+    password,
+    createdAt,
+    updatedAt,
+  }: UserWithDto): User {
+    return new User(id, email, password, createdAt, updatedAt);
   }
 
   protected validate(): void {
