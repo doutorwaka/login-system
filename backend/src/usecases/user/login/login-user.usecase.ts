@@ -45,10 +45,8 @@ export class LoginUserUsecase
       );
     }
 
-    const authToken = await this.jwtService.generateAuthToken(anUser.getId());
-    const refreshToken = await this.jwtService.generateRefreshToken(
-      anUser.getId(),
-    );
+    const authToken = this.jwtService.generateAuthToken(anUser.getId());
+    const refreshToken = this.jwtService.generateRefreshToken(anUser.getId());
 
     const output: LoginUserOutput = {
       authToken,
