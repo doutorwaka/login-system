@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { User } from 'src/domain/entities/user.entity';
 import { UserGateway } from 'src/domain/repositories/user.gateway';
 import { EmailAlreadyExistsUsecaseException } from 'src/usecases/exceptions/email-already-exists.usecase.exception';
@@ -12,6 +13,7 @@ export type CreateUserOutput = {
   id: string;
 };
 
+@Injectable()
 export class CreateUserUsecase
   implements Usecase<CreateUserInput, CreateUserOutput>
 {

@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { UserGateway } from 'src/domain/repositories/user.gateway';
 import { JwtService } from 'src/infra/services/jwt/jwt.service';
 import { CredentialsNotValidUsecaseException } from 'src/usecases/exceptions/credentials-not-valid.usecase.exception';
@@ -13,6 +14,7 @@ export type LoginUserOutput = {
   refreshToken: string;
 };
 
+@Injectable()
 export class LoginUserUsecase
   implements Usecase<LoginUserInput, LoginUserOutput>
 {

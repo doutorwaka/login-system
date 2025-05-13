@@ -7,7 +7,9 @@ import {
   JwtService,
 } from '../jwt.service';
 import { RefreshTokenNotValidServiceException } from '../../exceptions/refresh-token-not-valid.service.exception';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class JasonWebTokenService extends JwtService {
   private authSecret: string;
   private refreshSecret: string;
