@@ -6,8 +6,10 @@ import { UserEntityToUserPrismaModelMapper } from './model/mappers/user-entity-t
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class UserPrismaRepository implements UserGateway {
-  public constructor() {}
+export class UserPrismaRepository extends UserGateway {
+  public constructor() {
+    super();
+  }
 
   public async findByEmail(email: string): Promise<User | null> {
     const aModel = await prismaClient.user.findUnique({
