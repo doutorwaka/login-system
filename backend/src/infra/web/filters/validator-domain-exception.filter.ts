@@ -3,31 +3,24 @@ import {
   Catch,
   ExceptionFilter,
   HttpStatus,
-  Logger,
 } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
 import { Response } from 'express';
 import { ValidatorDomainException } from 'src/domain/shared/exceptions/validator-domain.exception';
+import { ExceptionUtils } from 'src/shared/utils/exception-utils';
+import { LogUtils } from 'src/shared/utils/log-utils';
 
 @Catch(ValidatorDomainException)
 export class ValidatorDomainExceptionFilter implements ExceptionFilter {
   public catch(exception: ValidatorDomainException, host: ArgumentsHost) {
-    const logger = new Logger(exception.getContext());
-
-    logger.error(exception.getInternalMessage());
-    logger.error(exception.stack);
+    LogUtils.logException(exception);
 
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
 
     const status = HttpStatus.BAD_REQUEST;
-    const message = exception.getExternalMessage();
 
-    const aResponseData = {
-      statusCode: status,
-      timestamp: new Date().toISOString(),
-      message: message,
-    };
+    const aResponseData = ExceptionUtils.buildErrorResponse(exception, status);
 
     response.status(status).json(aResponseData);
   }
