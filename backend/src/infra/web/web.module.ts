@@ -10,10 +10,11 @@ import { CreateUserRoute } from './routes/user/create/create-user.route';
 import { ServiceExceptionFilterProvider } from './filters/infra/services/service-exception.filter';
 import { RefreshTokenNotValidServiceExceptionFilterProvider } from './filters/infra/services/refresh-token-not-valid-service-exception.filter';
 import { LoginUserRoute } from './routes/user/login/login-user.route';
+import { RefreshAuthTokenRoute } from './routes/user/refresh-auth-token/refresh-auth-token.route';
 
 @Module({
   imports: [UsecaseModule],
-  controllers: [CreateUserRoute, LoginUserRoute],
+  controllers: [CreateUserRoute, LoginUserRoute, RefreshAuthTokenRoute],
   providers: [
     ValidatorDomainExceptionFilterProvider,
     DomainExceptionFilterProvider,
