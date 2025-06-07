@@ -1,0 +1,9 @@
+@userId = 3328f9ed-c590-49ab-94cc-5d1c9911a465
+
+###
+GET http://localhost:3000/users/{{userId}}
+Content-Type: application/json
+
+### user not found
+GET http://localhost:3000/users/invalid-user-id
+Content-Type: application/json

@@ -1,8 +1,8 @@
-export class CreateUserRouteRequest {
+export type CreateUserRouteRequest = {
   email: string;
   password: string;
-}
+};
 
-export class CreateUserRouteResponse {
+export type CreateUserRouteResponse = {
   id: string;
-}
+};
