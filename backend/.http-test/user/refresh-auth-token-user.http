@@ -1,7 +1,9 @@
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzMzI4ZjllZC1jNTkwLTQ5YWItOTRjYy01ZDFjOTkxMWE0NjUiLCJpYXQiOjE3NDkzMDU1ODQsImV4cCI6MTc0OTkxMDM4NH0.GyDEy9pBy5YrNG-43bKYOEAZR-HxcxLYOmqeCpW0wro
+
 ###
 POST http://localhost:3000/users/refresh
 Content-Type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzMzI4ZjllZC1jNTkwLTQ5YWItOTRjYy01ZDFjOTkxMWE0NjUiLCJpYXQiOjE3NDkzMDU1ODQsImV4cCI6MTc0OTkxMDM4NH0.GyDEy9pBy5YrNG-43bKYOEAZR-HxcxLYOmqeCpW0wro"
+    "refreshToken": "{{refreshToken}}"
 }

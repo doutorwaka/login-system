@@ -8,6 +8,7 @@ import {
   RefreshAuthTokenResponse,
 } from './refresh-auth-token.dto';
 import { RefreshAuthTokenPresenter } from './refresh-auth-token.presenter';
+import { IsPublic } from 'src/infra/web/auth/decorators/is-public.decorator';
 
 @Controller('users')
 export class RefreshAuthTokenRoute {
@@ -15,6 +16,7 @@ export class RefreshAuthTokenRoute {
     private readonly refreshAuthTokenUsecase: RefreshAuthTokenUserUsecase,
   ) {}
 
+  @IsPublic()
   @Post('refresh')
   public async handle(
     @Body() request: RefreshAuthTokenRequest,

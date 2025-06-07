@@ -1,9 +1,16 @@
 @userId = 3328f9ed-c590-49ab-94cc-5d1c9911a465
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzMzI4ZjllZC1jNTkwLTQ5YWItOTRjYy01ZDFjOTkxMWE0NjUiLCJpYXQiOjE3NDkzMDkxOTAsImV4cCI6MTc0OTMxMjc5MH0.L-rA7K78tKh1sZLan1pUCdtc-D9K2WSnDShd_jJWSZA
 
 ###
 GET http://localhost:3000/users/{{userId}}
 Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 ### user not found
+GET http://localhost:3000/users/invalid-user-id
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### user unauthorized
 GET http://localhost:3000/users/invalid-user-id
 Content-Type: application/json

@@ -8,11 +8,13 @@ import {
   CreateUserRouteResponse,
 } from './create-user.dto';
 import { CreateUserPresenter } from './create-user.presenter';
+import { IsPublic } from 'src/infra/web/auth/decorators/is-public.decorator';
 
 @Controller('users')
 export class CreateUserRoute {
   public constructor(private readonly createUserUsecase: CreateUserUsecase) {}
 
+  @IsPublic()
   @Post()
   public async handle(
     @Body() request: CreateUserRouteRequest,
