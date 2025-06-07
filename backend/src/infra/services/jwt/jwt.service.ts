@@ -17,4 +17,5 @@ export abstract class JwtService {
   public abstract generateAuthTokenWithRefreshToken(
     refreshToken: string,
   ): GenerateAuthTokenWithResfreshTokenOutput;
+  public abstract verifyAuthToken(token: string): JwtAuthPayload;
 }

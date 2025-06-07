@@ -8,6 +8,7 @@ import {
 } from '../jwt.service';
 import { RefreshTokenNotValidServiceException } from '../../exceptions/refresh-token-not-valid.service.exception';
 import { Injectable } from '@nestjs/common';
+import { AuthTokenNotValidServiceException } from '../../exceptions/auth-token-not-valid.service.exception';
 
 @Injectable()
 export class JasonWebTokenService extends JwtService {
@@ -95,6 +96,24 @@ export class JasonWebTokenService extends JwtService {
 
       throw new RefreshTokenNotValidServiceException(
         `Refresh token ${refreshToken} not valid while refreshing auth token in ${JasonWebTokenService.name}`,
+        `Credenciais inválidas. Faça o login novamente`,
+        JasonWebTokenService.name,
+      );
+    }
+  }
+
+  public verifyAuthToken(token: string): JwtAuthPayload {
+    try {
+      const payload = jsonwebtoken.verify(
+        token,
+        this.authSecret,
+      ) as JwtAuthPayload;
+
+      return payload;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      throw new AuthTokenNotValidServiceException(
+        `Auth token ${token} not valid while verifying in ${JasonWebTokenService.name}`,
         `Credenciais inválidas. Faça o login novamente`,
         JasonWebTokenService.name,
       );
