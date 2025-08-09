@@ -1,16 +1,10 @@
-@userId = 3328f9ed-c590-49ab-94cc-5d1c9911a465
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzMzI4ZjllZC1jNTkwLTQ5YWItOTRjYy01ZDFjOTkxMWE0NjUiLCJpYXQiOjE3NDkzMDkxOTAsImV4cCI6MTc0OTMxMjc5MH0.L-rA7K78tKh1sZLan1pUCdtc-D9K2WSnDShd_jJWSZA
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzYmRiMTg1MC1hYmEyLTQwZGMtYWE0Ni04MzBmOTlhZjc5NjQiLCJpYXQiOjE3NTQ3NTE0OTgsImV4cCI6MTc1NDc1NTA5OH0.1Wjjta9drmXmdHN3O9hj3OWVAKypZKp2uN45jE2GUho
 
 ###
-GET http://localhost:3000/users/{{userId}}
-Content-Type: application/json
-Authorization: Bearer {{authToken}}
-
-### user not found
-GET http://localhost:3000/users/invalid-user-id
+GET http://localhost:3000/users/me
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 ### user unauthorized
-GET http://localhost:3000/users/invalid-user-id
+GET http://localhost:3000/users/me
 Content-Type: application/json

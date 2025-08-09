@@ -1,4 +1,5 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { UserId } from 'src/infra/web/auth/decorators/user-id.decorator';
 import {
   FindUserInput,
   FindUserUsecase,
@@ -10,10 +11,8 @@ import { FindByIdUserPresenter } from './find-by-id-user.presenter';
 export class FindByIdUserRoute {
   public constructor(private readonly findUserUsecase: FindUserUsecase) {}
 
-  @Get(':id')
-  public async handle(
-    @Param('id') userId: string,
-  ): Promise<FindByIdUserResponse> {
+  @Get('me')
+  public async handle(@UserId() userId: string): Promise<FindByIdUserResponse> {
     const input: FindUserInput = {
       id: userId,
     };
