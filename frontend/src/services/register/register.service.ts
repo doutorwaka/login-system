@@ -7,9 +7,32 @@ export type RegisterServiceInput = {
 
 export type RegisterServiceOutput = void;
 
+type RequestData = {
+    email: string;
+    password: string;
+};
+
 export async function registerService(
     input: RegisterServiceInput
 ): Promise<RegisterServiceOutput> {
-    console.log("RegisterService called with input:", input);
-    return Promise.resolve();
+    const data: RequestData = {
+        email: input.email,
+        password: input.password,
+    };
+
+    const fetchOptions: RequestInit = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    };
+
+    const result = await fetch("http://localhost:3000/users", fetchOptions);
+
+    const resultBody = await result.json();
+
+    console.log(resultBody);
+
+    return;
 }

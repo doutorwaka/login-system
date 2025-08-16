@@ -11,7 +11,7 @@ const registerFormSchema = z
         email: z.email("Email inválido"),
         password: z
             .string()
-            .min(5, { message: "Senha deve ter pelo menos 5 caracteres" }),
+            .min(8, { message: "Senha deve ter pelo menos 8 caracteres" }),
         confirmPassword: z
             .string()
             .min(1, { message: "Confirmação de senha é obrigatória" }),
