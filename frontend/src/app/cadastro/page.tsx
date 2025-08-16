@@ -1,4 +1,3 @@
-import { LoginCard } from "@/components/login/login-card";
 import { RegisterCard } from "@/components/register/register-card";
 
 export default function RegisterPage() {

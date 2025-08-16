@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
 
 export function RegisterCard() {
     return (
@@ -18,7 +19,9 @@ export function RegisterCard() {
                 <CardTitle>Crie sua conta</CardTitle>
                 <CardDescription>Entre com os dados</CardDescription>
                 <CardAction>
-                    <Button variant="link">Faça o login!</Button>
+                    <Link href="/">
+                        <Button variant="link">Faça o login!</Button>
+                    </Link>
                 </CardAction>
             </CardHeader>
             <CardContent>
@@ -56,7 +59,7 @@ export function RegisterCard() {
             </CardContent>
             <CardFooter className="flex-col gap-2">
                 <Button type="submit" className="w-full">
-                    Login
+                    Cadastrar
                 </Button>
             </CardFooter>
         </Card>
