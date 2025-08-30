@@ -5,11 +5,19 @@ export type RegisterServiceInput = {
     password: string;
 };
 
-export type RegisterServiceOutput = void;
+export type RegisterServiceOutput = {
+    message: string;
+};
 
 type RequestData = {
     email: string;
     password: string;
+};
+
+type ResponseErrorData = {
+    statusCode: number;
+    timestamp: string;
+    message: string;
 };
 
 export async function registerService(
@@ -30,9 +38,27 @@ export async function registerService(
 
     const result = await fetch("http://localhost:3000/users", fetchOptions);
 
-    const resultBody = await result.json();
+    if (result.ok) {
+        const output: RegisterServiceOutput = {
+            message: "Usuário registrado com sucesso.",
+        };
 
-    console.log(resultBody);
+        return output;
+    }
 
-    return;
+    if (result.headers.get("Content-Type")?.includes("application/json")) {
+        const { timestamp, message, statusCode }: ResponseErrorData =
+            await result.json();
+        console.error(`${timestamp} - ${statusCode}: ${message}`);
+
+        throw new Error(message);
+    }
+
+    console.error(
+        `Error while registering user: ${result.status} - ${result.statusText}`
+    );
+
+    throw new Error(
+        "Um erro inesperado aconteceu. Por favor, tente mais tarde."
+    );
 }
