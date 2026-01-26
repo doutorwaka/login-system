@@ -46,7 +46,7 @@ export default function useFormLogin(): UseFormLoginType {
             }
 
             toast.error("Erro ao fazer login", {
-                description: result?.error || "Erro desconhecido",
+                description: "Erro inesperado ao efetuar o login",
                 icon: <CircleX />,
             });
         } catch (error) {
