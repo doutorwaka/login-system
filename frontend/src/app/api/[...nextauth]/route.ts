@@ -46,7 +46,7 @@ const nextAuthOptions: NextAuthOptions = {
                 token.authToken = user.authToken;
                 token.refreshToken = user.refreshToken;
             }
-            // Logica de refresh, validando se token é expirado, caso esteja, chama serviço de refresh
+            // Logica de refresh, validando se authToken está expirado, caso esteja, chama serviço de refresh
             return token;
         },
         async session({ session, token }) {
